@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sha Translator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="Text">
+            <textArea class="text1" id="FromText" placeholder="Enter your text"></textArea>
+            <textArea class="text2" id="ToText" placeholder="Translated text"></textArea>
+        </div>
+        <div class="selectArea">
+            <div class="select1">
+                <img src="speaker.svg" alt="speaker" class="speaker">
+                <img src="copy.svg" alt="copy" class="copy">
+                <select name="" id="fselect"></select>
+            </div>
+            <div class="select2">
+                <img src="speaker.svg" alt="speaker" class="speaker">
+                <img src="copy.svg" alt="copy" class="copy">
+                <select name="" id="sselect"></select>
+            </div>
+        </div>
+        <button id="transfer">Translate</button>
+    </div>
+
+    <script src="countries.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
