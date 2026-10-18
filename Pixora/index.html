@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Pixora — AI-powered text-to-image generator. Create stunning visuals from your imagination.">
+    <title>Pixora | AI Image Generator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=2">
+</head>
+<body>
+
+    <!-- Animated background orbs -->
+    <div class="bg-orb bg-orb-1"></div>
+    <div class="bg-orb bg-orb-2"></div>
+    <div class="bg-orb bg-orb-3"></div>
+
+    <main class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <span class="logo-icon">◈</span>
+                <h1>Pixora</h1>
+            </div>
+            <p class="subtitle">Transform words into breathtaking visuals with AI</p>
+        </header>
+
+        <!-- Input Section -->
+        <section class="input-section">
+            <label for="hf-token">Hugging Face token</label>
+            <input type="password" id="hf-token" placeholder="Paste a token with Inference Providers access" autocomplete="off" spellcheck="false">
+            <label for="prompt">Describe your vision</label>
+            <div class="input-wrapper">
+                <input type="text" id="prompt" placeholder="A cyberpunk samurai standing in neon-lit rain..." autocomplete="off">
+                <button id="btn-image">✨ Generate Masterpiece</button>
+            </div>
+        </section>
+
+        <!-- Output Section -->
+        <section class="output" id="output-container">
+            <div class="placeholder" id="placeholder-text">
+                <div class="placeholder-icon">🎨</div>
+                <span>Your masterpiece will appear here</span>
+            </div>
+            <div class="loader-container">
+                <span class="loader" id="loader"></span>
+                <span class="loader-text" id="loader-text">Warming up the AI...</span>
+            </div>
+            <img id="image" alt="AI Generated Image">
+            <a class="download-btn" id="download-btn" title="Download image">⬇ Download</a>
+        </section>
+    </main>
+
+    <!-- Toast notification -->
+    <div class="toast" id="toast"></div>
+
+    <!-- Zoom Modal -->
+    <div class="zoom-overlay" id="zoom-overlay">
+        <button class="zoom-close" id="zoom-close" title="Close (Esc)">✕</button>
+        <div class="zoom-controls">
+            <button class="zoom-ctrl-btn" id="zoom-in-btn" title="Zoom In">+</button>
+            <span class="zoom-level" id="zoom-level">100%</span>
+            <button class="zoom-ctrl-btn" id="zoom-out-btn" title="Zoom Out">−</button>
+            <button class="zoom-ctrl-btn" id="zoom-reset-btn" title="Reset">⟲</button>
+        </div>
+        <div class="zoom-container" id="zoom-container">
+            <img id="zoom-image" alt="Zoomed AI Generated Image" draggable="false">
+        </div>
+    </div>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f7f8fa">
+    <meta name="description" content="Remove image backgrounds in your browser and download transparent PNGs.">
+    <title>Erase.bg — Background Remover</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <header class="site-header">
+        <a class="brand" href="/" aria-label="Erase.bg home">
+            <img src="/logo.svg" alt="">
+            <span>erase<span class="brand-accent">.bg</span></span>
+        </a>
+        <div class="privacy-note">
+            <span class="privacy-indicator" aria-hidden="true"></span>
+            Images stay on your device
+        </div>
+    </header>
+
+    <main>
+        <section class="intro" aria-labelledby="page-title">
+            <p class="eyebrow">BACKGROUND REMOVER</p>
+            <h1 id="page-title">Your subject, <span>without the background.</span></h1>
+            <p class="intro-copy">Make a transparent PNG in seconds. Drop in a photo and let the browser do the rest.</p>
+        </section>
+
+        <section class="workspace" aria-label="Background removal workspace">
+            <div class="workspace-heading">
+                <div>
+                    <p class="section-kicker">IMAGE WORKSPACE</p>
+                    <h2>Remove an image background</h2>
+                </div>
+                <span class="format-badge">PNG output</span>
+            </div>
+
+            <div class="workspace-grid">
+                <div class="preview-column">
+                    <div class="preview-toolbar">
+                        <span class="preview-title">Preview</span>
+                        <div class="view-switch" role="group" aria-label="Preview image">
+                            <button class="view-button is-active" id="originalViewBtn" type="button" aria-pressed="true" disabled>Original</button>
+                            <button class="view-button" id="resultViewBtn" type="button" aria-pressed="false" disabled>Result</button>
+                        </div>
+                    </div>
+
+                    <div class="preview-stage" id="previewStage">
+                        <div class="empty-state" id="emptyState">
+                            <div class="empty-icon" aria-hidden="true">
+                                <svg viewBox="0 0 48 48" fill="none">
+                                    <rect x="6.5" y="8.5" width="35" height="31" rx="5.5" stroke="currentColor" stroke-width="1.8"/>
+                                    <circle cx="18" cy="19" r="3.2" stroke="currentColor" stroke-width="1.8"/>
+                                    <path d="m9 34 10-9 6 5 5-4 9 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M34 5v8M30 9h8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                                </svg>
+                            </div>
+                            <p class="empty-title">Your preview will appear here</p>
+                            <p class="empty-copy">Choose a photo to get started</p>
+                        </div>
+                        <img class="preview-image hidden" id="previewImage" alt="Selected image preview">
+                        <div class="processing-overlay hidden" id="processingOverlay" aria-hidden="true">
+                            <div class="processing-spinner"></div>
+                            <span>Cutting out your subject</span>
+                        </div>
+                        <span class="preview-label hidden" id="previewLabel"></span>
+                    </div>
+
+                    <div class="preview-footer">
+                        <span id="fileDetails">No image selected</span>
+                        <button class="text-button hidden" id="resetBtn" type="button">Choose another</button>
+                    </div>
+                </div>
+
+                <aside class="controls-column">
+                    <input id="imageInput" type="file" accept="image/png,image/jpeg,image/webp" hidden>
+                    <div class="dropzone" id="dropzone" role="button" tabindex="0" aria-label="Choose an image or drop it here">
+                        <div class="upload-icon" aria-hidden="true">
+                            <svg viewBox="0 0 32 32" fill="none">
+                                <path d="M16 21V7m0 0-5 5m5-5 5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M7 19v5a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <p class="drop-title">Drop your image here</p>
+                        <p class="drop-copy">or <span class="browse-link">browse files</span></p>
+                        <p class="file-hint">JPG, PNG or WEBP · up to 20 MB</p>
+                    </div>
+
+                    <button class="primary-button" id="removeBtn" type="button" disabled>
+                        <span>Remove background</span>
+                        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                            <path d="M4 10h12m-5-5 5 5-5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+
+                    <a class="download-button hidden" id="downloadBtn" download="erase-bg-transparent.png">
+                        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                            <path d="M10 3v9m0 0 3.5-3.5M10 12 6.5 8.5M4 13v3h12v-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        Download transparent PNG
+                    </a>
+
+                    <div class="status-message" id="statusMessage" role="status" aria-live="polite">Select a photo to begin.</div>
+                    <div class="progress-track hidden" id="progressTrack" aria-hidden="true">
+                        <div class="progress-bar" id="progressBar"></div>
+                    </div>
+
+                    <div class="privacy-card">
+                        <span class="privacy-lock" aria-hidden="true">✓</span>
+                        <p><strong>Private by design</strong><br>Your photo is processed locally and never uploaded.</p>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <p class="page-footnote">The first removal may take longer while the AI model loads. It is cached for future use.</p>
+    </main>
+
+    <script type="module" src="/script.js"></script>
+</body>
+</html>
